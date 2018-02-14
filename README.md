@@ -1,25 +1,19 @@
-# JavaScript Module Boilerplate
+# escalade-data-store
 
-A simple JavaScript boilerplate that outputs to ES5 and ES6.
+An event-based store system for getting Escalade Sports pricing, stock, or other data. Stores all fetched data in a cookie for quick retrieval.
 
-## Getting started
+## Installation
 
 ```bash
-git clone git@github.com:escaladesports/javascript-module-boilerplate.git --depth=1 your-module
-cd your-module
-yarn
-yarn reset
+yarn add escalade-data-store
 ```
-
-Also make sure to edit the `package.json` file with a new name, version number, author, and anything else you might need.
 
 ## Usage
 
-- `yarn build`: Build browser and node versions of the module
-- `yarn dev`: Run live dev mode
-- `yarn test`: Run mocha tests
-- `yarn analyze`: View bundle sizes
+```javascript
+import DataStore from 'escalade-data-store'
 
-# Unit Testing
-
-Unit tests will be performed pre-commit and pre-publish. You can change this in the npm scripts if this doesn't work well with your use case.
+class PriceStore extends DataStore{
+	...
+}
+```

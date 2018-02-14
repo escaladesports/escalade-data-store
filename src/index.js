@@ -1,13 +1,39 @@
+import defaultOptions from './default-options'
+import log from './log'
+import fetch from './fetch'
+import events from './events'
+import setters from './setters'
+import cookie from './cookie'
+import poll from './poll'
 
-console.log('Module loaded')
-
-export default function(){
-	const def = {
-		test: '123'
+class DataStore {
+	constructor(options) {
+		this.options = this.defaultOptions(options)
+		this.log(`Constructing store...`)
+		if(!this.options.site){
+			return console.log(`'site' option must be supplied`)
+		}
+		this.store = {}
+		this.changeEvents = []
+		this.changeEventsOptions = []
+		if(options.ids && options.ids.length){
+			this.addIds(options.ids, true)
+		}
+		this.getCookie()
+		this.fetch()
+		this.poll()
+		return this
 	}
-	const obj = {
-		anotherTest: 'abc',
-		...def,
-	}
-	return obj
 }
+
+DataStore.prototype = {
+	defaultOptions,
+	fetch,
+	log,
+	poll,
+	...events,
+	...setters,
+	...cookie,
+}
+
+export default DataStore
