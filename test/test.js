@@ -1,11 +1,9 @@
 import { expect } from 'chai'
-const theModule = require('../src')
-
-console.log('MODULE:', theModule)
+import DataStore from '../src'
 
 describe('Default module', () => {
 	it('Should have content', () => {
-		const testVar = new theModule()
+		const testVar = new DataStore()
 		expect(testVar).to.not.be.empty
 	})
 })
